@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("../inc/head") %> 
+  <body>
+    <div class="container mt-3">
+      <h2 class="text-center">Todo List</h2>
+      <form id="postForm" action="/api/v1/todos" method="POST" class="mt-3 d-flex justify-content-center align-items-center">
+        <div class="form-group col-md-10">
+          <input type="text" name="value" id="value" placeholder="Add your todo" class="form-control" />
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+      </form>
+      <div class="container mt-5 ">
+        <ul class="list-group">
+          <% data.forEach(item => { %>
+            <div class="list-group-item d-flex justify-content-between align-items-center">
+              <li class="list-unstyled <%= item.complate ? 'finished': '' %>"><%= item.value %></li>
+              <div class="d-flex">
+                <form action="/api/v1/todo/delete/<%= item.id %>" method="POST">
+                  <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+                <form action="/api/v1/todo/setComplate/<%= item.id %>" method="POST">
+                  <% if (item.complate) { %>
+                    <button type="submit" class="btn btn-success" disabled>Success</button>
+                  <% } else { %>
+                    <button type="submit" class="btn btn-success">Success</button>
+                  <% } %>
+                </form>
+              </div>
+            </div>
+          <% }) %>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

@@ -8,7 +8,7 @@
 git clone <git lab template url> <project_name>
 ```
 
-#Install dependencies
+# Install dependencies
 
 ```
 cd <project_name>
